@@ -1,0 +1,52 @@
+
+<div>
+<img id="image" width=400 height=400>
+</div>
+<div>
+<textarea id="text"></textarea> <br />
+<input type="checkbox" id="ext" onchange="getElementById('other').hidden=!this.checked" >extended</input> <br />
+<button onclick="updateImage();">generate</button>
+<div hidden=true id="other">
+	color <input id="color" value="000000"></input><br />
+	background <input id="bcolor" value="ffffff"></input><br />
+	types:<br />
+	dots: <select id="dots">
+		<option>rounded</option> 
+		<option>dots</option>
+		<option>classy</option> 
+		<option>classy-rounded</option> 
+		<option selected>square</option> 
+		<option>extra-rounded</option>
+	</select><br />
+	squares: <select id="sqares">
+		<option>dot</option>
+		<option  selected>square</option> 
+		<option>extra-rounded</option>
+	</select><br />
+	square dots: <select id="sqaredots">
+		<option>dot</option>
+		<option  selected>square</option> 
+	</select><br />
+</div>
+</div>
+<script>
+function updateImage(){
+	var ext = document.getElementById("ext")
+	var uri = (
+		"qr.svg?data="+document.getElementById("text").value) + 
+		(ext.checked ? 
+			"&extended=true"+
+			"&bcolor="+document.getElementById("bcolor").value +
+			"&dots="+document.getElementById("dots").value +
+			"&squares="+document.getElementById("sqares").value +
+			"&squaredots="+document.getElementById("sqaredots").value +
+			"&color="+document.getElementById("color").value
+			:
+			""
+		)+
+		"&r="+Math.random();
+		console.log(uri)
+		
+	document.getElementById("image").src=encodeURI(uri)
+}
+</script>
