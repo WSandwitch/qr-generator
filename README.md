@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is small rails app for creating qr-codes (simple or prettified) 
 
-Things you may want to cover:
+Uses rqrcode gem and [qr-code-styling](https://github.com/kozakdenys/qr-code-styling) lib (node.js fork https://github.com/mrfrase3/qr-code-styling/tree/node-support)
 
-* Ruby version
+# INSTALATION
+* bundle install
+* cd ext
+* npm i
+* cd ..
+* rails s
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[live demo](https://disk.wsstudio.tk/qr)
