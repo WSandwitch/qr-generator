@@ -21,5 +21,5 @@ module QrGenerator
   end
 end
 
-$QR = IO.popen("cd ext;node main_popen.js", "r+")
-puts "Node started"
+#$QR = IO.popen("cd ext;node main_popen.js", "r+")
+#puts "Node started"
