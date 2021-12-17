@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 	
 	def qr
 		$MUTEX ||= Mutex.new
+		image=""
 		respond_to do |format|
 				format.svg {
 				
