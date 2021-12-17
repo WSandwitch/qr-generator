@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 	
 	def qr
+		$MUTEX ||= Mutex.new
 		respond_to do |format|
 				format.svg {
 				
@@ -10,13 +11,19 @@ class ApplicationController < ActionController::Base
 						key="qre/#{params[:data]}/#{params[:level]||"M"}/#{params[:color] || "000000"}/#{params[:bcolor] || "ffffff"}/#{params[:dots] || "dots"}/#{params[:squares] || "dot"}/#{params[:squaredots] || "dot"}"
 						req="-d \"#{params[:data]}\" -c \"##{params[:color] || "000000"}\" -b \"##{params[:bcolor] || "ffffff"}\" #{'-i "'+params[:image]+'"' if false} -l #{params[:level]||"M"} -t #{params[:dots] || "dots"} -s #{params[:squares] || "dot"} -q #{params[:squaredots] || "dot"}"
 						begin
-							$QR.puts(req)
+							$MUTEX.synchronize{
+								$QR.puts(req)
+							}
 						rescue
-							$QR = IO.popen("cd ext;node main_popen.js", "r+")
-							sleep(0.5)
-							$QR.puts(req)
+							$MUTEX.synchronize{
+								$QR = IO.popen("cd ext;node main_popen.js", "r+")
+								sleep(0.5)
+								$QR.puts(req)
+							}
 						end
-						image=$QR.readline
+						$MUTEX.synchronize{
+							image=$QR.readline
+						}
 						send_data(
 							Rails.cache.fetch(key, compress: true, expires_in: 5.minutes){
 								Base64.decode64(
