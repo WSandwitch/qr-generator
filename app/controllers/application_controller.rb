@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 		respond_to do |format|
 				format.svg {
 				
-					if !params[:data] then
+					if (!params[:data] || params[:data].to_s.size==0) then
 						send_data( "", :filename => "error" ) if !params[:data]
 					elsif params[:extended]
 						key="qre/#{params[:data]}/#{params[:level]||"M"}/#{params[:color] || "000000"}/#{params[:bcolor] || "ffffff"}/#{params[:dots] || "dots"}/#{params[:squares] || "dot"}/#{params[:squaredots] || "dot"}"
