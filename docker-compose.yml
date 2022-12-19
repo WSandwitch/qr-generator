@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+
+  rails:
+    image: qr:rails
+    build: ./rails
+    ports:
+      - "3000"
+    environment:
+      RAILS_QR_URI: http://node:8080/
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        
+  node:
+    image: qr:node
+    build: ./node
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure

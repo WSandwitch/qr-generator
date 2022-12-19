@@ -32,4 +32,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/ext/node_modules
+node_modules
+tmp
+
+node/node_modules
+rails/tmp
+rails/log/*.log
