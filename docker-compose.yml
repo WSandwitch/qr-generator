@@ -5,7 +5,7 @@ services:
     image: qr:rails
     build: ./rails
     ports:
-      - "3000"
+      - 3032:3000
     environment:
       RAILS_QR_URI: http://node:8080/
     deploy:

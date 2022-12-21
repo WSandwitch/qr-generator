@@ -124,4 +124,5 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   config.require_master_key = false
   config.read_encrypted_secrets = false
+  config.hosts.clear
 end
