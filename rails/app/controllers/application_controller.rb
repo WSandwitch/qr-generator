@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
 						key="qre/#{params[:data]}/#{params[:level]||"M"}/#{params[:color] || "000000"}/#{params[:bcolor] || "ffffff"}/#{params[:dots] || "dots"}/#{params[:squares] || "dot"}/#{params[:squaredots] || "dot"}"
 						req={
 							data: params[:data],
-							color: params[:color] || "000000",
-							bcolor: params[:bcolor] || "ffffff",
+							color: '#'+(params[:color] || "000000").sub('##','#'),
+							bcolor: '#'+(params[:bcolor] || "ffffff").sub("##","#"),
 							level: params[:level]||"M",
 							dots: params[:dots] || "dots",
 							squares: params[:squares] || "dot",
