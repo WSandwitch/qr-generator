@@ -21,7 +21,7 @@ http.createServer( function(req, res){
 			},
 			dotsOptions: {
 					color: args.color,//"#4267b2",
-					type: args.dtype
+					type: args.dots
 			},
 			backgroundOptions: {
 					color: args.bcolor,
@@ -32,11 +32,11 @@ http.createServer( function(req, res){
 			},
 			cornersSquareOptions: {
 					color: args.color,
-					type: args.qstype
+					type: args.squares
 			},
 			cornersDotOptions: {
 					color: args.color,
-					type: args.qdtype
+					type: args.squaredots
 			}
 	}
 
