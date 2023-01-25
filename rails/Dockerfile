@@ -9,6 +9,6 @@ WORKDIR /app
 
 COPY . ./
 EXPOSE 3000
-RUN bundle check || bundle install
+RUN bundle check || bundle install --full-index
 
 CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
