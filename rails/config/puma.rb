@@ -35,7 +35,7 @@ if (ENV["REDIS_URL"].present?)
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-	workers ENV.fetch("RAILS_WORKERS") { $NCORES/2 > 1 ? $NCORES/2 : 0 }
+	workers ENV.fetch("RAILS_WORKERS") { 0 } #$NCORES/2 > 1 ? $NCORES/2 : 0 }
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
