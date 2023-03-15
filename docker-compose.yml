@@ -1,22 +1,24 @@
 version: "3.5"
 services:
 
-  rails:
-    image: qr-rails:v1
-    build: ./rails
+  rack:
+    image: qr-rack:v1
+    build: ./rack
+    volumes:
+    - ./rack:/rack
     ports:
-      - 3032:3000
+      - 3032:9292
     environment:
       RAILS_QR_URI: http://node:8080/
-    deploy:
-      replicas: 4
-      restart_policy:
-        condition: on-failure
+#    deploy:
+#      replicas: 4
+#      restart_policy:
+#        condition: on-failure
         
   node:
     image: qr-node:v1
     build: ./node
-    deploy:
-      replicas: 4
-      restart_policy:
-        condition: on-failure
+#    deploy:
+#      replicas: 4
+#      restart_policy:
+#        condition: on-failure

@@ -1,3 +1,4 @@
+
 FROM ruby:2.7.0
 ENV BUNDLER_VERSION=2.2.25
 
@@ -8,7 +9,8 @@ RUN gem install bundler -v 2.2.25
 WORKDIR /app
 
 COPY . ./
-EXPOSE 3000
-RUN bundle check || bundle install --full-index
+EXPOSE 9292
+#RUN bundle check
+RUN bundle install --full-index
 
-CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rackup", "-o", "0.0.0.0", "-p", "9292"]
